@@ -1,15 +1,8 @@
-# Generate Fake data
-
-# "Thanos" - 29  
-# "The Black Order"
-# "Ebony Maw" - 4  
-# "Proxima Midnight" - 3.75  
-# "Cull Obsidian" - 3.75  
-# "Corvus Glaive" - 3.5  
+# json format
 
 df <- "[
   {name: 'Thanos and Friends',
-              value: 34,
+  value: 34,
   children:[
   {name: 'The Black Order',
   value: 15,
@@ -63,7 +56,7 @@ df <- "[
   value: 18
   },
   {name: 'Asgardians',
-    value: 17.75,
+  value: 17.75,
   children: [
   {name : 'Thor',
   value: 14.5
@@ -77,7 +70,7 @@ df <- "[
   ]
   },
   {name: 'Masters of the Mystic Arts',
-    value: 14.25,
+  value: 14.25,
   children: [
   {name : 'Dr. Stephen Strange',
   value: 11.5
@@ -88,7 +81,7 @@ df <- "[
   ]
   },
   {name: 'Wakandans',
-              value: 8.75,
+  value: 8.75,
   children:[
   {name: 'Wakandans',
   value: 5.25,
@@ -108,6 +101,56 @@ df <- "[
   value: 3.5
   }
   ]
+  },
+  {name: 'Vision',   
+  value: 9.75  
+  },
+  {name: 'Wanda Maximoff/Scarlet Witch',   
+  value: 9
+  },
+  {name: 'Natasha Romanoff/Black Widow',   
+  value: 5 
+  },
+  {name: 'Dr. Bruce Banner/The Hulk',   
+  value: 8.75  
+  },
+  {name: 'Peter Parker/Spider-Man',   
+  value: 7.5  
+  },
+  {name: 'Steve Rogers/Captain America',   
+  value: 6.75  
+  },
+  {name: 'Col. James Rhodes/War Machine',
+  value: 3  
+  },
+  {name: 'Sam Wilson/Falcon',   
+  value: 2.25 
+  },
+  {name: 'Eitri',   
+  value: 2.75  
+  },
+  {name: 'James Bucky Barnes/White Wolf',   
+  value: 2  
+  },
+  {name: 'Pepper Potts',   
+  value: 1.5  
+  },
+  {name: 'The Stonekeeper',   
+  value: 1.5
+  },
+  {name: 'Taneleer Tivan/The Collector',   
+  value: 0.75  
+  }, 
+  {name: 'S.H.I.E.L.D',
+    value: 1.75,
+  children:[
+  {name: 'Nick Fury',
+  value: 1
+  },
+  {name: 'Maria Hill',
+  value: 0.75
+  }
+  ]
   }
   ]"
 
@@ -117,26 +160,25 @@ library(ECharts2Shiny)
 
 # ui ----
 ui <- fluidPage(
-   
+  
   # Need to Load the ECharts libraries 
   loadEChartsLibrary(),
-  loadEChartsTheme("macarons"),
+  loadEChartsTheme("infographic"),
   
   # Bring in the chart
-  tags$div(id="test", style="width:100%;height:500px;"),
+  tags$div(id="test", style="width:100%;height:1800px;"),
   deliverChart(div_id = "test")
 )
 
 # server ----
 server <- function(input, output) {
-   
+  
   renderTreeMap(div_id = "test",
                 data = df, 
                 name = "Infinity War",
-                theme = "macarons", # must match ui
+                theme = "infographic", # must match ui
                 show.tools = TRUE)
 }
 
 # Run the application 
 shinyApp(ui = ui, server = server)
-
